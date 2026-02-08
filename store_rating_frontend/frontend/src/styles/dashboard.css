@@ -1,20 +1,99 @@
+body {
+  background: #f4f6f8;
+  font-family: Arial, sans-serif;
+}
+
 .dashboard {
-  padding: 20px;
+  padding: 25px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.header h2 {
+  color: #333;
 }
 
 .card {
-  background: white;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 6px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-.table {
+.card h3 {
+  margin-bottom: 12px;
+  color: #444;
+}
+
+input {
   width: 100%;
-  border-collapse: collapse;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
 }
 
-.table th, .table td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+input:focus {
+  border-color: #1976d2;
 }
+
+button {
+  background: #1976d2;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #125aa3;
+}
+
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.store-card h4 {
+  margin-bottom: 6px;
+  color: #222;
+}
+
+.store-card .address {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.store-card .rating {
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.rate-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.rate-section select {
+  padding: 6px;
+  border-radius: 4px;
+}
+
+.rate-section button {
+  padding: 7px 14px;
+}
+

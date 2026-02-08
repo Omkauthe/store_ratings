@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../api/axios";
 import StoreCard from "../components/StoreCard";
 import LogoutButton from "../components/LogoutButton";
+import "../styles/dashboard.css";
 
 export default function UserDashboard() {
   const [stores, setStores] = useState([]);
@@ -9,11 +10,11 @@ export default function UserDashboard() {
   const [newPassword, setNewPassword] = useState("");
 
   useEffect(() => {
-     fetchStores();
+    fetchStores();
   }, []);
 
   const fetchStores = async () => {
-    const res = await api.get("/stores");
+    const res = await api.get("/user/stores");
     setStores(res.data);
   };
 
@@ -28,10 +29,14 @@ export default function UserDashboard() {
   };
 
   return (
-    <div>
-      <h2>Stores</h2>
-      {stores.map(store => <StoreCard key={store.id} store={store} />)}
-      <div>
+    <div className="dashboard">
+      <div className="header">
+        <h2>User Dashboard</h2>
+        <LogoutButton />
+      </div>
+
+      <div className="card password-card">
+        <h3>Update Password</h3>
         <input
           type="password"
           placeholder="New Password"
@@ -41,29 +46,26 @@ export default function UserDashboard() {
         <button onClick={updatePassword}>Update Password</button>
       </div>
 
-    
-      <input
-        type="text"
-        placeholder="Search by name or address"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div className="card search-card">
+        <input
+          type="text"
+          placeholder="Search by store name or address"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
 
-      {stores
-        .filter(
-          (s) =>
-            s.name.toLowerCase().includes(search.toLowerCase()) ||
-            s.address.toLowerCase().includes(search.toLowerCase())
-        )
-        .map((store) => (
-          <div key={store.id}>
-            <h4>{store.name}</h4>
-            <p>{store.address}</p>
-            <p>Rating: {store.rating}</p>
-          </div>
-        ))}
-    
-      <LogoutButton />
+      <div className="store-grid">
+        {stores
+          .filter(
+            (s) =>
+              s.name.toLowerCase().includes(search.toLowerCase()) ||
+              s.address.toLowerCase().includes(search.toLowerCase())
+          )
+          .map((store) => (
+            <StoreCard key={store.id} store={store} />
+          ))}
+      </div>
     </div>
   );
 }
